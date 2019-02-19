@@ -10,6 +10,10 @@ const userInitialState = {
   username: '',
   email: '',
   gender: '',
+  // Job search parameters
+  fullTime: false,
+  descriptions: [],
+  location: '',
 }
 
 // Reducer
@@ -18,9 +22,9 @@ export default ((state = userInitialState, action) => {
   switch (type) {
     case UPDATE:
       return Object.assign({}, state, { ...payload });
-    default: return state;
     case LOGOUT:
       return Object.assign({}, state, { isLoggedIn: false });
+    default: return state;
   }
 });
 

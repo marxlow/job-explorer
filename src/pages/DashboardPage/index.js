@@ -16,10 +16,13 @@ const mapStateToProps = ((state) => {
 });
 
 const mapDispatchToProps = ((dispatch) => {
-  const { logout } = userActions;
+  const { logout, update } = userActions;
   return ({
     handleLogout: (() => {
       dispatch(logout());
+    }),
+    updateForm: ((jobSearchData) => {
+      dispatch(update(jobSearchData));
     })
   })
 });
