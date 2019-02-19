@@ -9,7 +9,7 @@ const appReducer = combineReducers({
 // Root reducer will also remove browser cache in logout
 const rootReducer = (state, action) => {
 
-  if (action.type === 'USER_LOGOUT') {
+  if (action.type === 'USER_LOGOUT_ACTION') {
     // Remove store in local storage
     storage.removeItem('persist:root');
     // Reset store

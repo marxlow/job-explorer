@@ -38,7 +38,7 @@ class DashboardView extends Component {
   });
 
   addDescription = (() => {
-    const { description } = this.state;
+    const description = this.state.description.toLowerCase();
     let updatedDescriptions = this.props.descriptions;
     updatedDescriptions.push(description);
     this.props.updateForm({ descriptions: updatedDescriptions });
@@ -62,7 +62,9 @@ class DashboardView extends Component {
               <div>
                 {descriptions.map((description, key) => {
                   return (
-                    <span key={key} className="badge badge-pill badge-light">{description}</span>
+                    <span key={key} className="badge badge-pill badge-dark ml-4 my-1 p-3">
+                      <medium>{description}</medium>
+                    </span>
                   );
                 })}
               </div>
