@@ -1,6 +1,9 @@
-//TODO: To Check login session of user
+import store from '../store';
+
 const isLoggedIn = (() => {
-  return false;
+  // Read from redux store
+  const storeState = store.getState();
+  return storeState.user.isLoggedIn;
 });
 
 export default isLoggedIn;
