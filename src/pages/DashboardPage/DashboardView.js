@@ -6,7 +6,7 @@ class DashboardView extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      description: '',
+      isLoading: false,
     };
   }
 
@@ -34,20 +34,12 @@ class DashboardView extends Component {
   });
 
   updateDescription = ((e) => {
-    this.setState({ description: e.target.value });
-  });
-
-  addDescription = (() => {
-    const description = this.state.description.toLowerCase();
-    let updatedDescriptions = this.props.descriptions;
-    updatedDescriptions.push(description);
-    this.props.updateForm({ descriptions: updatedDescriptions });
-    this.setState({ description: '' });
+    this.props.updateForm({ description: e.target.value });
   });
 
   render() {
-    const { fullTime, descriptions, location } = this.props;
-    const { description } = this.state;
+    const { fullTime, description, location } = this.props;
+    const { isLoading } = this.state;
 
     return (
       <div>
@@ -56,26 +48,18 @@ class DashboardView extends Component {
           <div className="pt-4">
             <span className="h3 text-dark">Find a job you love</span>
           </div>
+          {/* Form for job searching */}
           <div className="pt-4 w-50">
             <form className="d-flex flex-column align-items-center">
-              {/* Selected Descriptions */}
-              <div>
-                {descriptions.map((description, key) => {
-                  return (
-                    <span key={key} className="badge badge-pill badge-dark ml-4 my-1 p-3">
-                      <medium>{description}</medium>
-                    </span>
-                  );
-                })}
-              </div>
 
-              {/* Adding Descriptions */}
-              <div className="input-group my-2">
-                <input type="text" className="form-control form-control-lg" placeholder="Single Job Description" onChange={this.updateDescription} value={description} />
-                <div className="input-group-append">
-                  <button className="btn btn-outline-danger" type="button" onClick={this.addDescription}>Add Description</button>
-                </div>
-              </div>
+              {/* For Description */}
+              <input
+                className="form-control form-control-lg my-2"
+                type="text"
+                placeholder="Your Job Description"
+                value={description}
+                onChange={this.updateDescription}
+              />
 
               {/* For Location */}
               <input

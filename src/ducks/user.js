@@ -12,7 +12,7 @@ const userInitialState = {
   gender: '',
   // Job search parameters
   fullTime: false,
-  descriptions: [],
+  description: '',
   location: '',
 }
 
