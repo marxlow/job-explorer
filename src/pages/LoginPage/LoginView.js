@@ -19,7 +19,7 @@ class LoginView extends Component {
     }
   }
 
-  // Log email and password as user is typing
+  // Save email and password in state as user is typing
   onLoginFormChange = ((e) => {
     const value = e.target.value;
     const field = e.target.type;

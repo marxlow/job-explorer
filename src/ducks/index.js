@@ -6,7 +6,7 @@ const appReducer = combineReducers({
   user: userReducer,
 });
 
-// Root reducer only handles logout
+// Root reducer will also remove browser cache in logout
 const rootReducer = (state, action) => {
 
   if (action.type === 'USER_LOGOUT') {

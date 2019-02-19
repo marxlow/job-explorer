@@ -2,6 +2,7 @@
 
 // Actions
 const UPDATE = 'USER_UPDATE_ACTION';
+const LOGOUT = 'USER_LOGOUT_ACTION';
 
 // Initial state
 const userInitialState = {
@@ -18,6 +19,8 @@ export default ((state = userInitialState, action) => {
     case UPDATE:
       return Object.assign({}, state, { ...payload });
     default: return state;
+    case LOGOUT:
+      return Object.assign({}, state, { isLoggedIn: false });
   }
 });
 
@@ -26,3 +29,7 @@ export const update = ((user) => {
   const payload = { isLoggedIn: true, ...user };
   return { type: UPDATE, payload };
 })
+
+export const logout = (() => {
+  return { type: LOGOUT };
+});
