@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import AppHeader from 'shared/layouts/AppHeader';
 import BooleanInput from 'shared/components/BooleanInput';
 import LoadingSpinner from 'shared/components/LoadingSpinner';
+import JobCard from './components/JobCard';
 
 class DashboardView extends Component {
   constructor(props) {
@@ -27,6 +28,7 @@ class DashboardView extends Component {
 
   // Send current props for jobs
   findJobs = ((e) => {
+    e.preventDefault();
     this.setState({ isLoading: true });
     const { description, location, fullTime } = this.props;
     this.props.findJobs({
@@ -34,7 +36,7 @@ class DashboardView extends Component {
       location,
       fullTime,
     });
-    e.preventDefault();
+    this.setState({ isLoading: false }); // TODO: temproary fix
   })
 
   // Functions to update job search paremeters
@@ -52,7 +54,7 @@ class DashboardView extends Component {
   });
 
   render() {
-    const { fullTime, description, location } = this.props;
+    const { fullTime, description, location, jobs } = this.props;
     const { isLoading } = this.state;
     console.log('> Props at render:', this.props);
     return (
@@ -101,8 +103,12 @@ class DashboardView extends Component {
             </form>
           </div>
         </section>
-        <section>
-
+        <section className="d-flex justify-content-between w-100 pt-4">
+          {jobs.map(({ type, company_url, company, location, title, description, company_logo, key }) => {
+            return (
+              <JobCard type={type} url={company_url} company={company} location={location} title={title} description={description} logo={company_logo} key={key} />
+            );
+          })}
         </section>
       </div >
     )
