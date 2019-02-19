@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import AppHeader from 'shared/layouts/AppHeader';
 import BooleanInput from 'shared/components/BooleanInput';
+import LoadingSpinner from 'shared/components/LoadingSpinner';
 
 class DashboardView extends Component {
   constructor(props) {
@@ -11,7 +12,7 @@ class DashboardView extends Component {
   }
 
   // Redirects to login page if user is not authenticated
-  componentDidUpdate() {
+  componentDidUpdate(prevProps) {
     const { isLoggedIn } = this.props;
     if (!isLoggedIn) {
       this.props.history.push("/login");
@@ -24,6 +25,19 @@ class DashboardView extends Component {
     this.props.handleLogout();
   });
 
+  // Send current props for jobs
+  findJobs = ((e) => {
+    this.setState({ isLoading: true });
+    const { description, location, fullTime } = this.props;
+    this.props.findJobs({
+      description,
+      location,
+      fullTime,
+    });
+    e.preventDefault();
+  })
+
+  // Functions to update job search paremeters
   toggleFullTime = ((e) => {
     const prevFullTime = this.props.fullTime;
     this.props.updateForm({ fullTime: !prevFullTime });
@@ -40,7 +54,7 @@ class DashboardView extends Component {
   render() {
     const { fullTime, description, location } = this.props;
     const { isLoading } = this.state;
-
+    console.log('> Props at render:', this.props);
     return (
       <div>
         <AppHeader onLogout={this.onLogout} />
@@ -50,7 +64,7 @@ class DashboardView extends Component {
           </div>
           {/* Form for job searching */}
           <div className="pt-4 w-50">
-            <form className="d-flex flex-column align-items-center">
+            <form className="d-flex flex-column align-items-center" onSubmit={this.findJobs}>
 
               {/* For Description */}
               <input
@@ -80,9 +94,15 @@ class DashboardView extends Component {
               />
 
               {/* Submit button */}
-              <button className="btn btn-outline-danger" type="submit">Get Hired!</button>
+              {isLoading
+                ? <LoadingSpinner />
+                : <button className="btn btn-outline-danger" type="submit">Get Hired!</button>
+              }
             </form>
           </div>
+        </section>
+        <section>
+
         </section>
       </div >
     )

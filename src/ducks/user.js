@@ -14,6 +14,7 @@ const userInitialState = {
   fullTime: false,
   description: '',
   location: '',
+  jobs: [],
 }
 
 // Reducer
