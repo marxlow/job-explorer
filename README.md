@@ -12,7 +12,7 @@ npm run start
 ```
 
 ### Frameworks used
-The project is built with `react` and `redux`. We are also following the `ducks` methodology for building our redux infrastructure, find out more [here]("https://medium.freecodecamp.org/scaling-your-redux-app-with-ducks-6115955638be")
+The project is built with `react` and `redux`. We are also following the `ducks` methodology for building our redux infrastructure, find out more [here]("https://github.com/erikras/ducks-modular-redux")
 
 Other notable libraries are:
 - `redux-persist` --> For persisting and rehydrating our store to pick up where users have left off.
@@ -34,6 +34,7 @@ Future development of the project should follow strict folder structures so as t
 ### Future 
 - Create useful statistics at dashboard page with [Victory Charts](https://formidable.com/open-source/victory/docs/victory-chart/)
 - Refactor `DashboardView.js` to use smaller, pure components
+- Include Company Logo in `DashboardView.js`
 
 
 
